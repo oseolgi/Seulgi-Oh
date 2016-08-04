@@ -41,6 +41,15 @@ body {
     </div>
 </div>
 
+<div class="post_list">
+  {% csrf_token %}
+    <p>최근 글 목록</p>
+    <table>
+      <tr><td>제목</td><td>등록일</td></tr>
+      <tr><b><td> {{post.title}} </td></b><td> {{post.date}} </td></tr>
+    </table>
+</div>
+
 <div class="footer">
     <div class="container">
         <p class="text-muted">Place sticky footer content here.</p>

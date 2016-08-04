@@ -1,0 +1,48 @@
+<h2>제목: {{ post.title }}</h2>
+
+<div>
+    <table>
+        <tr>
+            <td width=100><b>번호</b></td>
+            <td>{{ post.pk }}</td>
+        </tr>
+        <tr>
+            <td width=100><b>작성일</b></td>
+            <td>{{ post.created_at }}</td>
+        </tr>
+        <tr>
+            <td width=100><b>내용</b></td>
+            <td>{{ post.content }}</td>
+        </tr>
+    </table>
+</div>
+
+<br>
+<br>
+
+<div>
+    <h3>댓글 목록</h3>
+    <table>
+        <tr>
+            <td width=50><b>번호</b></td>
+            <td width=150><b>작성자</b></td>
+            <td width=500><b>내용</b></td>
+            <td></td>
+        </tr>
+        {% for comment in comment_list %}
+        <tr>
+            <td>{{ comment.pk }}</td>
+            <td>{{ comment.author }}</td>
+            <td>{{ comment.message }}</td>
+            <td><button type=button onclick='location.href="{% url 'blog:comment_edit' post.pk comment.pk %}"'>수정</button></td>
+        {% endfor %}
+        </tr>
+
+    </table>
+</div>
+
+<br>
+
+<div>
+    <button type=button onclick='location.href="{% url 'blog:comment_new' post.pk %}"'>댓글 쓰기</button>
+</div>

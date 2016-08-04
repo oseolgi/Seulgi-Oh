@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>드래그 가능한 마커 생성하기</title>
+
+</head>
+<body>
+<div id="map" style="width:100%;height:350px;"></div>
+<p><em>마커를 드래그 해주세요!</em></p>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06ab39f9ca896b90f3256bcd9b2ce8a1"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    mapOption = {
+        center: new daum.maps.LatLng({{lat}}, {{lng}}), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 마커가 표시될 위치입니다
+var markerPosition = new daum.maps.LatLng({{lat}}, {{lng}});
+
+// 마커를 생성합니다
+var marker = new daum.maps.Marker({
+    position: markerPosition,
+});
+
+// 마커가 드래그, 클릭이 가능하도록 설정합니다
+marker.setDraggable(true);
+marker.setClickable(true);
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+
+// 아래 코드는 지도 아무 곳이나 클릭했을 때 마커를 옮겨가는 기능
+daum.maps.event.addListener(map, 'click', function(mouseEvent) {
+    var latlng = mouseEvent.latLng;
+
+    marker.setPosition(latlng);
+
+    var lat = latlng.getLat();
+    var lng = latlng.getLng();
+    var position = new daum.maps.LatLng(lat, lng);
+    infowindow.open(map, marker);
+
+    $("#id_latlng").val(lat + "," + lng);
+});
+
+
+// 아래는 지도 중심 좌표를 이동시키는 기능
+daum.maps.event.addListener(marker, 'dragend', function() {
+    var latlng = marker.getPosition();
+    var lat = latlng.getLat();
+    var lng = latlng.getLng();
+    map.setCenter(new daum.maps.LatLng(lat, lng));
+    infowindow.open(map, marker);
+
+    $("#id_latlng").val(lat + "," + lng);
+    // 위의 형식이 기존의 forms에 등록된 형식과 맞지 않으면 오류 발생?
+});
+
+daum.maps.event.addListener(marker, 'dragstart', function() {
+    infowindow.close(map, marker);
+});
+
+// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
+var iwContent = '<div style="padding:5px;"> 대여 장소 </div>',
+    iwRemoveable = true;
+
+// 인포 윈도우를 생성합니다
+var infowindow = new daum.maps.InfoWindow({
+    content: iwContent,
+    removable: iwRemoveable,
+});
+
+// 마커에 클릭이벤트를 등록합니다
+
+infowindow.open(map, marker)
+
+</script>
+</body>
+</html>
