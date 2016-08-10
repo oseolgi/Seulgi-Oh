@@ -1,0 +1,54 @@
+{% extends 'snuway_front/base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<!-- 네비게이션 바 시작 -->
+<body id="page-top" class="index">
+    <nav id="mainNav" class="navbar navbar-default navbar-custom1 navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> 메뉴 <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="index">스누웨이</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="index">홈</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#lend">빌려주기</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="lend_list">빌리기</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="my">마이페이지</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#login" data-target="#login" data-toggle="modal">로그인</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+</body>
+<!-- 네비게이션 바 끝 -->
+
+
+<section id="lend">
+    빌려주기 내용 들어가는 부분!
+</section>
+
+{% endblock %}
