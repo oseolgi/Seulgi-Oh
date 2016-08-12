@@ -13,7 +13,7 @@ class MinLengthValidator(object):
         self.min_length = min_length
 
     def __call__(self, value):
-        if len(value) < min_length:
+        if len(value) < self.min_length:
             raise ValidationError('{}글자 이상 입력해주세요.'.format(self.min_length))
 
 
@@ -23,7 +23,7 @@ class MaxLengthValidator(object):
         self.max_length = max_length
 
     def __call__(self, value):
-        if len(value) > max_length:
+        if len(value) > self.max_length:
             raise ValidationError('{}글자 이하로 입력해주세요.'.format(self.max_length))
 
 
@@ -33,8 +33,8 @@ def phone_number_validator(phone_number):
 
 
 def lnglat_validator(lnglat):
-    if not re.match(r'^(\d+\.?\d*),(\d+\.?\d*)$',lnglat):
-        raise forms.ValidationError('Invalid LngLat Type')
+    if not re.match(r'^(-?\d+\.\d*),(-?\d+\.?\d*)$',lnglat):
+        raise ValidationError('Invalid LngLat Type')
 
 @deconstructible
 class ZipcodeValidator(object):

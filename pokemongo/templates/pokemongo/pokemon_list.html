@@ -1,0 +1,10 @@
+<h1>안녕하세요, 포켓몬Go의 세상에 오신 것을 환영합니다.</h1>
+
+<table>
+{% for pokemon in pokemon_list %}
+<tr>
+    <td>{{ pokemon.pokemon_name }}</td>
+    <td>{{ pokemon.pokemon_type }}</td>
+</tr>
+{% endfor %}
+</table>

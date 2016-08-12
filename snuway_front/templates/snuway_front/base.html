@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -32,8 +33,11 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-</head>
+    <!-- 캘린더 참조 링크 -->
+    <link href="{% static 'fullcalendar-2.9.1/fullcalendar.css' %}" rel='stylesheet' />
+    <link href="{% static 'fullcalendar-2.9.1/fullcalendar.print.css' %}" rel='stylesheet' media='print' />
 
+</head>
 
     {% block content %}
     {% endblock %}
@@ -150,6 +154,68 @@
     <!-- Theme JavaScript -->
     <script src="{% static 'js/agency.min.js' %}"></script>
 
-</body>
+    <!-- 캘린더 자바스크립트 -->
+    <script src="{% static 'fullcalendar-2.9.1/lib/moment.min.js' %}"></script>
+    <script src="{% static 'fullcalendar-2.9.1/lib/jquery.min.js' %}"></script>
+    <script src="{% static 'fullcalendar-2.9.1/fullcalendar.min.js' %}"></script>
+    <script>
 
+    var today = new Date()
+    var month = today.getMonth()+1
+    today = today.getFullYear() + '-' + month + '-' + today.getDate()
+    console.log(today)
+        $(document).ready(function() {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultDate: today,
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end) {
+                    var title = prompt('빌려가는 사람의 이름을 입력해 주세요.');
+                    var eventData;
+                    if (title) {
+                        eventData = {
+                            title: title,
+                            start: start,
+                            end: end
+                        };
+                        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                    }
+                    $('#calendar').fullCalendar('unselect');
+                },
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events: [
+                    {% for i in dates %}
+                    {
+                        title: '{{i.title}}',
+                        start: '{{i.start|date:"c"}}',
+                        end: '{{i.end|date:"c"}}',
+                        description: '{{i.description|linebreaks}}'
+                    },
+                    {% endfor %}
+                ],
+            });
+        });
+
+    </script>
+    <style>
+
+        #calendar_body {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: "a옛날사진관3";
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+    </style>
 </html>

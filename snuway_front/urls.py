@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^my$', views.my, name='my'),
     url(r'^lend$', views.lend, name='lend'),
     url(r'^lend_list$', views.lend_list, name='lend_list'),
+    url(r'^calendar_test$', views.calendar_test, name='calendar_test'),
 ]

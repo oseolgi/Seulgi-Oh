@@ -35,6 +35,8 @@
             <td>{{ comment.author }}</td>
             <td>{{ comment.message }}</td>
             <td><button type=button onclick='location.href="{% url 'blog:comment_edit' post.pk comment.pk %}"'>수정</button></td>
+        {% empty %}
+            작성된 댓글이 없습니다.
         {% endfor %}
         </tr>
 

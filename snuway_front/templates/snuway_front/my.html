@@ -9,6 +9,7 @@
 
 
 <script>
+$('#myTab a[href="#account"]').('show')
 $('#myTab a').click(function (e) {
   e.preventDefault()
   $(this).tab('show')
@@ -78,8 +79,8 @@ $('#myTab a[href="#account"]').tab('show')
 
 
             <!-- Tab panes -->
-            <div class="tab-content col-sm-9 col-md-9">
-                <div role="tabpanel" class="tab-pane fade active" id="account">스크롤을 위한 공백<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+            <div class="tab-content col-sm-6 col-md-9">
+                <div role="tabpanel" class="tab-pane active" id="account">스크롤을 위한 공백<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
                 <div role="tabpanel" class="tab-pane fade" id="booking">...</div>
                 <div role="tabpanel" class="tab-pane fade" id="profit">...</div>
             </div>
@@ -89,7 +90,8 @@ $('#myTab a[href="#account"]').tab('show')
 </section>
 <!-- 탭 메뉴 끝 -->
 
-
 </html>
 
 {% endblock %}
+
+
